@@ -9,7 +9,8 @@ module Jobs
       last_polled_at = campaign[:last_polled_at]
 
       rss = fetch_rss
-
+      fetch_rss.gsub('&lt;','<')
+      fetch_rss.gsub('&gt;','>')
       if rss.present?
         if last_polled_at.present?
           build_date = rss.channel.lastBuildDate || rss.channel.pubDate
